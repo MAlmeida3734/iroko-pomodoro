@@ -1,13 +1,7 @@
-.heading {
-background: green;
-color: brown;
+.heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem;
 }
-
-
-.blue{
-background: blue;
-}
-
-
-
 
