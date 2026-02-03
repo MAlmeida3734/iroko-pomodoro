@@ -1,9 +1,8 @@
 import { Container } from './components/Container'
 import { CountDown } from './components/Countdown'
-import { Heading } from './components/Heading'
+import { Input } from './components/Input'
 import { Logo } from './components/Logo'
 import { Menu } from './components/Menu'
-
 
 import './styles/global.css'
 import './styles/theme.css'
@@ -16,7 +15,7 @@ export function App() {
       </Container>
 
       <Container>
-        <Menu /> 
+        <Menu />
       </Container>
 
       <Container>
@@ -24,7 +23,24 @@ export function App() {
       </Container>
 
       <Container>
-        <Heading> FOOTER </Heading>
+        <form className="form" action="">
+          <div className="formRow">
+            <Input id="meuInput" type= 'text'/>    
+          </div>
+
+          <div className="formRow">
+            <p>Lorem, ipsum dolor sit.</p>
+          </div>
+
+          <div className="formRow">
+            <p>Ciclos</p>
+            <p> 0 0 0 0 0 0 0</p>
+          </div>
+
+          <div className="formRow">
+            <p>Enviar</p>
+          </div>
+        </form>
       </Container>
     </>
   )
