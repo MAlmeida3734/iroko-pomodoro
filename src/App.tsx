@@ -1,5 +1,5 @@
-import { Container } from './components/Container.tsx'
-import { Heading } from './components/Heading.tsx'
+import { Container } from './components/Container'
+import { Heading } from './components/Heading'
 import './styles/global.css'
 import './styles/theme.css'
 
