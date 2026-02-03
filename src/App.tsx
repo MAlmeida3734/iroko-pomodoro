@@ -1,5 +1,9 @@
 import { Container } from './components/Container'
 import { Heading } from './components/Heading'
+import { Logo } from './components/Logo'
+import { Menu } from './components/Menu'
+
+
 import './styles/global.css'
 import './styles/theme.css'
 
@@ -7,15 +11,19 @@ export function App() {
   return (
     <>
       <Container>
-        <Heading> Iroko Pomodoro </Heading>
+        <Logo />
       </Container>
 
       <Container>
-        <Heading> LOGO </Heading>
+        <Menu /> 
       </Container>
 
       <Container>
-        <Heading> MENU </Heading>
+        <Heading> FORM </Heading>
+      </Container>
+
+      <Container>
+        <Heading> FOOTER </Heading>
       </Container>
     </>
   )
