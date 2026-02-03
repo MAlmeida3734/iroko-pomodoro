@@ -1,4 +1,5 @@
 import { Container } from './components/Container'
+import { CountDown } from './components/Countdown'
 import { Heading } from './components/Heading'
 import { Logo } from './components/Logo'
 import { Menu } from './components/Menu'
@@ -19,7 +20,7 @@ export function App() {
       </Container>
 
       <Container>
-        <Heading> FORM </Heading>
+        <CountDown />
       </Container>
 
       <Container>
