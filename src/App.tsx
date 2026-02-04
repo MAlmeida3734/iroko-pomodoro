@@ -1,4 +1,4 @@
-import { PlayCircleIcon } from 'lucide-react'
+import { PlayCircleIcon, StopCircleIcon } from 'lucide-react'
 import { Container } from './components/Container'
 import { CountDown } from './components/Countdown'
 import { Cycles } from './components/Cycles'
@@ -40,8 +40,9 @@ export function App() {
           </div>
 
           <div className="formRow">
-            <DefaultButton icon={<PlayCircleIcon />} />
-             </div>
+            <DefaultButton icon={<PlayCircleIcon />} color='green' />
+            <DefaultButton icon={<StopCircleIcon />} color='red' />
+          </div>
         </form>
       </Container>
     </>
