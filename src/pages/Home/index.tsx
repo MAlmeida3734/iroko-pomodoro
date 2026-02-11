@@ -3,7 +3,7 @@ import { CountDown } from "../../components/Countdown";
 import { MainForm } from "../../components/MainForm";
 import { MainTemplate } from "../../components/Template/MainTemplate";
 
-export function Home() {
+export function Home() { 
   return (
     <MainTemplate>
             <Container>
