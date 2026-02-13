@@ -1,6 +1,6 @@
 import { PlayCircleIcon, StopCircleIcon } from 'lucide-react'
 import { useRef } from 'react'
-import { useTaskContext } from '../../contests/TaskContext/useTaskContext'
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext'
 import type { TaskModel } from '../../models/TaskModel'
 import { Cycles } from '../Cycles'
 import { DefaultButton } from '../DefaultButtom'
@@ -59,8 +59,7 @@ export function MainForm() {
         formatedSecondsReimining: '00:00',
         tasks: prevState.tasks.map((task) => {
           if (prevState.activeTask && prevState.activeTask.id === task.id) {
-           return { ...task, interruptDate: Date.now() }
-         
+            return { ...task, interruptDate: Date.now() }
           }
           return task
         }),
