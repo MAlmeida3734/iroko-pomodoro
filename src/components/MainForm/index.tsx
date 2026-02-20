@@ -8,6 +8,7 @@ import { Input } from '../Input'
 import { getNextCycle } from '../utils/getNextCycle'
 import { getNextCycleType } from '../utils/getNextCycleType'
 import { TaskActionTypes } from '../../contexts/TaskContext/taskAction'
+import { Tips } from '../Tips'
 
 export function MainForm() {
   const { state, dispatch } = useTaskContext()
@@ -55,8 +56,8 @@ export function MainForm() {
             disabled={!!state.activeTask}
           />
         </div>
-        <div className="formRow">
-          <p>Próximo intervalo é de 25 minutos</p>
+        <div className="formRow" >
+          <Tips />
         </div>
         {state.currentCycle > 0 && (
           <div className="formRow">
