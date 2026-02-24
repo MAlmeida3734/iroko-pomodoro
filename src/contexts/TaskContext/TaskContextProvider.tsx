@@ -8,7 +8,7 @@ type TaskContextProviderProps = {
 }
 
 export function TaskContextProvider({ children }: TaskContextProviderProps) {
-  const [state, dispach] = useReducer(taskReducer, initialTaskState);
+  const [state, dispatch] = useReducer(taskReducer, initialTaskState);
 
 
 
@@ -17,7 +17,7 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
   }, [state]);
 
   return (
-    <TaskContext.Provider value={{ state, dispach }}>
+    <TaskContext.Provider value={{ state, dispatch }}>
       {children}
     </TaskContext.Provider>
   )

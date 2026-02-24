@@ -18,6 +18,28 @@ export function MainForm() {
   const nextCycle = getNextCycle(state.currentCycle)
   const nextCycleType = getNextCycleType(nextCycle)
 
+    //Tips
+  const tipsForWhenActiveTask ={
+    workTime: <span>Foque por { state.config.workTime } minutos </span>
+  , shortBreakTime: <span>Descanse por { state.config.shortBreakTime } minutos </span>
+  , longBreakTime: <span>Descanso longo </span>
+  };
+
+   const tipsForNoActiveTask = {
+     workTime: (
+       <span>
+         Próximo ciclo é de <b>{state.config.workTime} minutos</b>{' '}
+       </span>
+     ),
+     shortBreakTime: (
+       <span>
+         Próximo ciclo é de <b>{state.config.shortBreakTime} minutos</b>{' '}
+       </span>
+     ),
+     longBreakTime: <span>Próximo descanso será longo</span>,
+   }
+
+
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (taskNameInput.current === null) return
@@ -38,13 +60,13 @@ export function MainForm() {
     }
 
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask })
+  }
 
+  function handleInterruptTask() {
+    dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
+  }
 
-    function handleInterruptTask() {
-      dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
-    }
-
-    return (
+  return (
       <form onSubmit={handleCreateNewTask} className="form" action="">
         <div className="formRow">
           <Input
@@ -57,7 +79,8 @@ export function MainForm() {
           />
         </div>
         <div className="formRow" >
-          <Tips />
+          {!!state.activeTask && tipsForWhenActiveTask[state.activeTask.type]}
+          {!state.activeTask && tipsForNoActiveTask[nextCycleType]}
         </div>
         {state.currentCycle > 0 && (
           <div className="formRow">
@@ -88,4 +111,4 @@ export function MainForm() {
         </div>
       </form>
     )
-  }
+}
