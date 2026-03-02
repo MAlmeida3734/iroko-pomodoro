@@ -40,8 +40,14 @@ export function MainForm() {
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask })
   }
 
+<<<<<<< HEAD
   function handleInterruptTask() {
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK })
+=======
+
+  function handleInterruptTask() {
+    dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
+>>>>>>> 2a50378 (Commit Inicial)
   }
 
   return (
@@ -56,7 +62,11 @@ export function MainForm() {
           disabled={!!state.activeTask}
         />
       </div>
+<<<<<<< HEAD
       <div className="formRow">
+=======
+      <div className="formRow" >
+>>>>>>> 2a50378 (Commit Inicial)
         <Tips />
       </div>
       {state.currentCycle > 0 && (
