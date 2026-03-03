@@ -1,4 +1,4 @@
-import { PlayCircleIcon, StopCircleIcon, Timer } from 'lucide-react'
+import { PlayCircleIcon, StopCircleIcon } from 'lucide-react'
 import { useRef } from 'react'
 import { TaskActionTypes } from '../../contexts/TaskContext/taskAction'
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext'
@@ -41,19 +41,14 @@ export function MainForm() {
 
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask })
 
-    showAlert.sucess('Tarefa iniciada');
+    showAlert.success('Tarefa iniciada');
   }
 
-<<<<<<< HEAD
+
   function handleInterruptTask() {
     showAlert.dismiss();
     showAlert.error('Tarefa interrompida!');
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK })
-=======
-
-  function handleInterruptTask() {
-    dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
->>>>>>> 2a50378 (Commit Inicial)
   }
 
   return (
@@ -68,11 +63,8 @@ export function MainForm() {
           disabled={!!state.activeTask}
         />
       </div>
-<<<<<<< HEAD
   <div className="formRow">
-=======
-      <div className="formRow" >
->>>>>>> 2a50378 (Commit Inicial)
+
       <Tips />
     </div>
     {state.currentCycle > 0 && (

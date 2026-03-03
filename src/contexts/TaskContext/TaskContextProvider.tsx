@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { useEffect, useReducer, useRef } from 'react'
 import { TimerWorkerManager } from '../../workers/timerWorkerManager'
 import { TaskContext } from './TaskContext'
 import { initialTaskState } from './initialTaskState'
