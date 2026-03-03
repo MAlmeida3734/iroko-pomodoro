@@ -46,6 +46,8 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
       worker.terminate()
     }
 
+    document.title = `${state.formatedSecondsReimining} - Iroko Pomodoro`;
+
     worker.postMessage(state)
   }, [worker, state])
 
