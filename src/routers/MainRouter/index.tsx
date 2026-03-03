@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router'
-import { AboutPomodoro } from '../../components/AboutPomodoro'
-import { Notfound } from '../../components/Notfound'
+import { Notfound } from '../../pages/Notfound'
+import { AboutPomodoro } from '../../pages/AboutPomodoro'
 import { Home } from '../../pages/Home'
+import { History } from '../../pages/History'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -19,6 +20,7 @@ export function MainRouter() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/history" element={<History />} />
         <Route path="/about-pomodoro" element={<AboutPomodoro />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
