@@ -1,0 +1,28 @@
+import { useEffect } from 'react'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router'
+import { AboutPomodoro } from '../../components/AboutPomodoro'
+import { Notfound } from '../../components/Notfound'
+import { Home } from '../../pages/Home'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [pathname])
+
+  return null
+}
+
+export function MainRouter() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about-pomodoro" element={<AboutPomodoro />} />
+        <Route path="*" element={<Notfound />} />
+      </Routes>
+      <ScrollToTop />
+    </BrowserRouter>
+  )
+}
