@@ -4,9 +4,16 @@ import { DefaultButton } from '../../components/DefaultButtom'
 import { Heading } from '../../components/Heading'
 import { MainTemplate } from '../../components/Template/MainTemplate'
 
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext'
+import { formatDate } from '../../utils/formatDate'
+import { getTaskStatus } from '../../utils/getTaskStatus'
 import styles from './styles.module.css'
+import { sortTasks } from '../../utils/sortTasks'
 
 export function History() {
+  const { state } = useTaskContext()
+  const sortedTasks = sortTasks({ tasks: state.tasks })
+  
   return (
     <MainTemplate>
       <Container>
@@ -37,15 +44,22 @@ export function History() {
             </thead>
 
             <tbody>
-              {Array.from({ length: 20 }).map((_, index) => (
-                <tr  key={index}>
-                  <td>Estudar</td>
-                  <td>25 min</td>
-                  <td>20/04/2025 00:00</td>
-                  <td>Completa</td>
-                  <td>Foco</td>
-                </tr>
-              ))}
+              {sortedTasks.map((task) => {
+                const taskTypeDictionary = {
+                  workTime: 'Foco',
+                  shortBreakTime: 'Descanso curto',
+                  longBreakTime: 'Descanso longo',
+                }
+                return (
+                  <tr key={task.id}>
+                    <td>{task.name}</td>
+                    <td>{task.duration}</td>
+                    <td>{formatDate(task.startDate)}</td>
+                    <td>{getTaskStatus(task, state.activeTask)}</td>
+                    <td>{taskTypeDictionary[task.type]}</td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>
