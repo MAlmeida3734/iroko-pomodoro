@@ -1,19 +1,22 @@
 import { TrashIcon } from 'lucide-react'
 import { Container } from '../../components/Container'
-import { DefaultButton } from '../../components/DefaultButtom'
+import { DefaultButton } from '../../components/DefaultButton'
 import { Heading } from '../../components/Heading'
 import { MainTemplate } from '../../components/Template/MainTemplate'
 
 import { useEffect, useState } from 'react'
-import { TaskActionTypes } from '../../contexts/TaskContext/taskAction'
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext'
 import { formatDate } from '../../utils/formatDate'
 import { getTaskStatus } from '../../utils/getTaskStatus'
 import { sortTasks, type SortTasksOptions } from '../../utils/sortTasks'
 import styles from './styles.module.css'
+import { showAlert } from '../../adapters/showAlert'
+import { set } from 'date-fns'
+import { TaskActionTypes } from '../../contexts/TaskContext/taskAction'
 
 export function History() {
   const { state, dispatch } = useTaskContext()
+  const [confirmClearHistory, setConfirmClearHistory] = useState(false)
   const hasTasks = state.tasks.length > 0
 
   const [sortTaskOptions, setSortTaskOptions] = useState<SortTasksOptions>(() => {
@@ -33,7 +36,13 @@ export function History() {
         field: prevState.field,
       }),
     }))
-  }, [state.tasks])
+  }, [state.tasks]);
+
+  useEffect(() => {
+    if(!confirmClearHistory) return
+    setConfirmClearHistory(false);
+    dispatch({ type: TaskActionTypes.RESET_STATE})
+  }, [confirmClearHistory])
 
   function handleSortTasks({ field }: Pick<SortTasksOptions, 'field'>) {
     const newDirection = sortTaskOptions.direction === 'desc' ? 'asc' : 'desc'
@@ -50,9 +59,10 @@ export function History() {
   }
 
   function handleResetHistory() {
-    if (!confirm('tem certeza que deseja apagar todo o histórico?')) return
-
-    dispatch({ type: TaskActionTypes.RESET_STATE })
+    showAlert.dismiss()
+    showAlert.confirm('Tem  certeza que deseja apagar todo o histórico?', (confirmation) => {
+      setConfirmClearHistory(confirmation);
+    })
   }
 
   return (
