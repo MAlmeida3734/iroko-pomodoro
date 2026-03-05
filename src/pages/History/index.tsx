@@ -5,14 +5,13 @@ import { Heading } from '../../components/Heading'
 import { MainTemplate } from '../../components/Template/MainTemplate'
 
 import { useEffect, useState } from 'react'
+import { showAlert } from '../../adapters/showAlert'
+import { TaskActionTypes } from '../../contexts/TaskContext/taskAction'
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext'
 import { formatDate } from '../../utils/formatDate'
 import { getTaskStatus } from '../../utils/getTaskStatus'
 import { sortTasks, type SortTasksOptions } from '../../utils/sortTasks'
 import styles from './styles.module.css'
-import { showAlert } from '../../adapters/showAlert'
-import { set } from 'date-fns'
-import { TaskActionTypes } from '../../contexts/TaskContext/taskAction'
 
 export function History() {
   const { state, dispatch } = useTaskContext()
@@ -36,12 +35,12 @@ export function History() {
         field: prevState.field,
       }),
     }))
-  }, [state.tasks]);
+  }, [state.tasks])
 
   useEffect(() => {
-    if(!confirmClearHistory) return
-    setConfirmClearHistory(false);
-    dispatch({ type: TaskActionTypes.RESET_STATE})
+    if (!confirmClearHistory) return
+    setConfirmClearHistory(false)
+    dispatch({ type: TaskActionTypes.RESET_STATE })
   }, [confirmClearHistory])
 
   function handleSortTasks({ field }: Pick<SortTasksOptions, 'field'>) {
@@ -61,7 +60,7 @@ export function History() {
   function handleResetHistory() {
     showAlert.dismiss()
     showAlert.confirm('Tem  certeza que deseja apagar todo o histórico?', (confirmation) => {
-      setConfirmClearHistory(confirmation);
+      setConfirmClearHistory(confirmation)
     })
   }
 
