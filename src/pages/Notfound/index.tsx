@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Container } from '../../components/Container'
 import { GenericHtml } from '../../components/GenericHtml'
 import { Heading } from '../../components/Heading'
@@ -5,6 +6,11 @@ import { RouterLink } from '../../components/RouterLink'
 import { MainTemplate } from '../../components/Template/MainTemplate'
 
 export function Notfound() {
+
+  useEffect(() => {
+      document.title = 'Página não encontrada - Iroko Pomodoro '
+    }, [])
+    
   return (
     <MainTemplate>
       <Container>

@@ -1,15 +1,19 @@
 import { SaveIcon } from 'lucide-react'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { showAlert } from '../../adapters/showAlert'
 import { Container } from '../../components/Container'
 import { DefaultButton } from '../../components/DefaultButton'
 import { Heading } from '../../components/Heading'
 import { Input } from '../../components/Input'
 import { MainTemplate } from '../../components/Template/MainTemplate'
-import { useTaskContext } from '../../contexts/TaskContext/useTaskContext'
 import { TaskActionTypes } from '../../contexts/TaskContext/taskAction'
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext'
 
 export function Settings() {
+  useEffect(() => {
+    document.title = 'Configurações - Iroko Pomodoro '
+  }, [])
+
   const { state, dispatch } = useTaskContext()
   const workTimeInput = useRef<HTMLInputElement>(null)
   const shortBreakTimeInput = useRef<HTMLInputElement>(null)
@@ -47,11 +51,14 @@ export function Settings() {
       })
       return
     }
-    dispatch ({type: TaskActionTypes.CHANGE_SETTINGS, payload: {
-      workTime,
-      shortBreakTime,
-      longBreakTime,
-    }})
+    dispatch({
+      type: TaskActionTypes.CHANGE_SETTINGS,
+      payload: {
+        workTime,
+        shortBreakTime,
+        longBreakTime,
+      },
+    })
     showAlert.success('Configurações salvas!')
   }
 
